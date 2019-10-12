@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 19:05:31 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/12 10:34:58 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/12 18:05:56 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,11 @@ int		**ft_write_map3(t_map *tmp, int **int_map)
 	return (int_map);
 }
 
-int		**ft_heatmap(t_map *tmp)
+int		**ft_heatmap(int **int_map, t_map *tmp)
 {
-	int	**int_map;
-
 	int_map = ft_crt_int_map(tmp, int_map);
 	int_map = ft_write_int_map(tmp, int_map);
 	int_map = ft_write_heat_map(tmp, int_map);
-	int_map = ft_write_map3(tmp, int_map);
+	//int_map = ft_write_map3(tmp, int_map);
 	return (int_map);
 }

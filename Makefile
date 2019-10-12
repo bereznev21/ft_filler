@@ -6,6 +6,7 @@ SRC = ft_filler.c \
 	ft_preparation.c \
 	ft_heatmap.c \
 	ft_algo_heat_map.c \
+	ft_insert_figure.c \
 
 FLS = -Wall -Werror -Wextra
 

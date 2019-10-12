@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/11 23:00:02 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/12 18:14:04 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_write_map2(int height, int width)
 
 	a = 0;
 	b = 0;
-	printf("    ");
 	while (b < width)
 		printf("%d", b++ % 10);
 	printf("\n");
@@ -48,12 +47,39 @@ void	ft_write_map2(int height, int width)
 	}
 }
 
+void	ft_print_map(t_map *tmp)
+{
+	int	a;
+	int	b;
+
+	a = 0;
+	b = 0;
+	printf("    ");
+	while (b < tmp->width)
+		printf("%d", b++ % 10);
+	printf("\n");
+	b = 0;
+	while (a < tmp->height)
+	{
+		printf("%03d ", a);
+		while (b < tmp->width)
+		{
+			printf("%c", tmp->map[a][b]);
+			b++;
+		}
+		printf("\n");
+		b = 0;
+		a++;
+	}
+}
+
 int		main(void)
 {
 	int			i;
 	char		*line;
 	t_map		*tmp;
 	t_figure	*fig;
+	int			**int_map;
 	//char		*map;
 
 	i = 1;
@@ -64,7 +90,11 @@ int		main(void)
 	ft_write_map(tmp, line);
 	ft_srch_figure(tmp, fig, line);
 	//printf("%c\n", tmp->map[0][0]);
-	ft_heatmap(tmp);
+	int_map = ft_heatmap(int_map, tmp);
+	ft_insert_figure(tmp, fig, int_map);
+	ft_write_figure(tmp, fig);
+	ft_print_map(tmp);
+	printf("<got (%c): [%d, %d]", 'O', fig->best_i, fig->best_j);
 	/*map = ft_strdup("");
 	while (i == 1)
 	{
