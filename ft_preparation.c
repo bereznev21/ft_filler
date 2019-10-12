@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:05:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/11 17:05:39 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/12 13:59:44 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_srch_map(t_map *tmp)
 
 	i = 1;
 	num_line = 0;
+	//if (ft_strstr(line, "# -------------- VM  version 1.1 ------------- #"))
 	while (num_line < 6 && i == 1)
 	{
 		i = ft_get_next_line(0, &line);
