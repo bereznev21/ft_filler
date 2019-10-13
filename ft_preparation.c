@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:05:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/12 13:59:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:52:30 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ void	ft_srch_map(t_map *tmp)
 
 	i = 1;
 	num_line = 0;
-	//if (ft_strstr(line, "# -------------- VM  version 1.1 ------------- #"))
-	while (num_line < 6 && i == 1)
+	i = ft_get_next_line(0, &line);
+	if (ft_strstr(line, "VM  version 1.1"))
 	{
-		i = ft_get_next_line(0, &line);
-		num_line++;
-		free(line);
+		while (num_line < 5 && i == 1)
+		{
+			i = ft_get_next_line(0, &line);
+			num_line++;
+			free(line);
+		}
+		num_line = 0;
 	}
-	if (ft_get_next_line(0, &line) == 1)
-		ft_srch_order(line, tmp);
-	while (num_line < 8 && i == 1)
+	//if (ft_get_next_line(0, &line) == 1)
+	ft_srch_order(line, tmp);
+	i = ft_get_next_line(0, &line);
+	//free (line);
+	while (num_line < 2 && i == 1)
 	{
 		i = ft_get_next_line(0, &line);
 		num_line++;
@@ -41,11 +47,17 @@ void	ft_srch_map(t_map *tmp)
 
 void	ft_srch_order(char *line, t_map *tmp)
 {
-	if (ft_strstr(line, "$$$ exec p1 : [players/abanlin.filler]"))
+	if (ft_strstr(line, "launched players/rpoetess.filler"))
+	{
+		tmp->order_char = 'O';
 		tmp->order = 1;
+	}
 	else
+	{
+		tmp->order_char = 'X';
 		tmp->order = 2;
-	free(line);
+	}
+	//free(line);
 	//printf("%d\n", tmp->pos);
 }
 

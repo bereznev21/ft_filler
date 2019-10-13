@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/12 18:03:21 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 16:22:06 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_write_figure(t_map *tmp, t_figure *fig)
 		while (b < fig->figure_b)
 		{
 			if (fig->figure[a][b] == '*')
-				tmp->map[fig->best_i + a][fig->best_j + b] = '*';
+				tmp->map[fig->best_i + a][fig->best_j + b] = tmp->order_char;
 			b++;
 		}
 		b = 0;
@@ -49,17 +49,17 @@ int		ft_putfigure(int **int_map, t_figure *fig, int i, int j)
 		{
 			if (int_map[i + a][j + b] != -2)
 				sum += int_map[i + a][j + b];
-			if (int_map[i + a][j + b] == -2)
+			if (int_map[i + a][j + b] == -2 && fig->figure[a][b] == '*')
 				once++;
 			b++;
 		}
 		b = 0;
 		a++;
 	}
+	//printf("sum %d %d : %d %d\n", sum , once, i, j);
 	if (once != 1)
 		return (-1);
 	return (sum);
-	//printf("sum %d ", best_sum);
 }
 
 void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)

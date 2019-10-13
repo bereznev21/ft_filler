@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:51:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/11 21:58:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:02:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_srch_figure_size(t_figure *fig, char *line)
 	ft_crt_figure(fig);
 	free(a);
 	free(b);
-	//free(line);
+	free(line);
 }
 
 void	ft_srch_figure(t_map *tmp, t_figure *fig, char *line)
@@ -52,17 +52,24 @@ void	ft_srch_figure(t_map *tmp, t_figure *fig, char *line)
 
 	i = 1;
 	index = 0;
-	while (i == 1)
+	//while (i == 1)
 	{
 		i = ft_get_next_line(0, &line);
 		if (ft_strstr(line, "Piece "))
 			ft_srch_figure_size(fig, line);
+		i = ft_get_next_line(0, &line);
 		if (ft_strstr(line, ".") || ft_strstr(line, "*"))
 		{
-			//printf("%s\n", line);
-			fig->figure[index] = ft_strjoin_right(fig->figure[index], line);
-			index++;
+			while (i == 1)
+			{
+				//printf("%s\n", line);
+				fig->figure[index] = ft_strjoin_right(fig->figure[index], line);
+				//printf("|%s|\n", fig->figure[index]);
+				index++;
+				free(line);
+				i = ft_get_next_line(0, &line);
+			}
 		}
-		(i == 1) ? free(line) : 0;
+		//(i == 1) ? free(line) : 0;
 	}
 }

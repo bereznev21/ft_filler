@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/12 18:14:04 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:58:10 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int		main(void)
 	int_map = ft_heatmap(int_map, tmp);
 	ft_insert_figure(tmp, fig, int_map);
 	ft_write_figure(tmp, fig);
-	ft_print_map(tmp);
-	printf("<got (%c): [%d, %d]", 'O', fig->best_i, fig->best_j);
+	//ft_print_map(tmp);
+	printf("%d %d\n", fig->best_i, fig->best_j);
 	/*map = ft_strdup("");
 	while (i == 1)
 	{
