@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 18:29:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/10 17:55:28 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:50:44 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	int	ft_get_new_line(const int fd, char **line, char **old, int i)
 
 int			ft_get_next_line(const int fd, char **line)
 {
-	static char	*old[4864];
+	static char	*old[1];
 	char		*new_arr;
 	int			i;
 	char		*buf;

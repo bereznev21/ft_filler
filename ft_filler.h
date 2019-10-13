@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 16:11:25 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:25:55 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/includes/libft.h"
 # include <stdio.h>
-
-//int	get_next_line(const int fd, char **line);
 
 typedef struct		s_map
 {
@@ -43,7 +41,7 @@ void	ft_srch_figure(t_map *tmp, t_figure *fig, char *line);
 void	ft_write_map(t_map *tmp, char *line);
 void	ft_free_map(t_map *tmp);
 void	ft_create_map(t_map *tmp);
-void	ft_srch_map(t_map *tmp);
+int		ft_srch_map(t_map *tmp);
 void	ft_srch_order(char *line, t_map *tmp);
 void	ft_srch_size(char *line, t_map *tmp);
 void	ft_crt_figure(t_figure *tmp);

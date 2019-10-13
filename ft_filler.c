@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 18:58:10 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:55:05 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,32 +83,41 @@ int		main(void)
 	//char		*map;
 
 	i = 1;
-	tmp = (t_map*)malloc(sizeof(t_map));
-	fig = (t_figure*)malloc(sizeof(t_figure));
-	ft_srch_map(tmp);
-	ft_create_map(tmp);
-	ft_write_map(tmp, line);
-	ft_srch_figure(tmp, fig, line);
-	//printf("%c\n", tmp->map[0][0]);
-	int_map = ft_heatmap(int_map, tmp);
-	ft_insert_figure(tmp, fig, int_map);
-	ft_write_figure(tmp, fig);
-	//ft_print_map(tmp);
-	printf("%d %d\n", fig->best_i, fig->best_j);
-	/*map = ft_strdup("");
-	while (i == 1)
+	//while (1)
 	{
-		i = ft_get_next_line(0, &line);
-		map = ft_strjoin_right(map, line);
-		map = ft_strjoin_right(map, "\n");
-		//printf("%s\n", line);
-		if (i == 1)
-			free(line);
+		tmp = (t_map*)malloc(sizeof(t_map));
+		fig = (t_figure*)malloc(sizeof(t_figure));
+	
+		ft_srch_map(tmp);
+		//if (i == 1)
+		{
+			ft_create_map(tmp);
+			ft_write_map(tmp, line);
+			ft_srch_figure(tmp, fig, line);
+			int_map = ft_heatmap(int_map, tmp);
+			ft_insert_figure(tmp, fig, int_map);
+			ft_write_figure(tmp, fig);
+			//ft_print_map(tmp);
+			//if (ft_get_next_line(0, &line) == 1)
+				//if (ft_strstr(line, "<got"))
+			printf("%d %d\n", fig->best_i, fig->best_j);
+			/*map = ft_strdup("");
+			while (i == 1)
+			{
+				i = ft_get_next_line(0, &line);
+				map = ft_strjoin_right(map, line);
+				map = ft_strjoin_right(map, "\n");
+				//printf("%s\n", line);
+				if (i == 1)
+					free(line);
+			}
+			printf("%s", map);
+			free(map);*/
+			ft_free_map(tmp);
+			ft_strdel(fig->figure);
+			free(fig);
+		}
+		//free(line);
 	}
-	printf("%s", map);
-	free(map);*/
-	ft_free_map(tmp);
-	ft_strdel(fig->figure);
-	//free(line);
 	return (0);
 }

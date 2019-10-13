@@ -6,28 +6,34 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:05:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 18:52:30 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 23:01:58 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-void	ft_srch_map(t_map *tmp)
+int		ft_srch_map(t_map *tmp)
 {
 	int		num_line;
 	int		i;
 	char	*line;
 
-	i = 1;
+	i = 0;
 	num_line = 0;
-	i = ft_get_next_line(0, &line);
+	//while (i == 0)
+	{
+		//ft_putchar('!');
+		//ft_putchar('!');
+		i = ft_get_next_line(0, &line);
+	}
 	if (ft_strstr(line, "VM  version 1.1"))
 	{
 		while (num_line < 5 && i == 1)
 		{
 			i = ft_get_next_line(0, &line);
 			num_line++;
-			free(line);
+			if (i == 1)
+				free(line);
 		}
 		num_line = 0;
 	}
@@ -39,26 +45,28 @@ void	ft_srch_map(t_map *tmp)
 	{
 		i = ft_get_next_line(0, &line);
 		num_line++;
-		free(line);
+		if (i == 1)
+			free(line);
 	}
 	if (ft_get_next_line(0, &line) == 1)
 		ft_srch_size(line, tmp);
+	return (i);
 }
 
 void	ft_srch_order(char *line, t_map *tmp)
 {
-	if (ft_strstr(line, "launched players/rpoetess.filler"))
+	if (ft_strstr(line, "launched /players/rpoetess.filler"))
 	{
-		tmp->order_char = 'O';
+		tmp->order_char = 'X';
 		tmp->order = 1;
 	}
 	else
 	{
-		tmp->order_char = 'X';
+		tmp->order_char = 'O';
 		tmp->order = 2;
 	}
 	//free(line);
-	//printf("%d\n", tmp->pos);
+	//printf("%d\n", tmp->order);
 }
 
 void	ft_srch_size(char *line, t_map *tmp)

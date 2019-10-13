@@ -3,8 +3,8 @@
 # 42 / filler VM Developped by: Hcao - Abanlin #
 #                                              #
 # -------------------------------------------- #
-launched ./players/rpoetess.filler
-$$$ exec p1 : [./players/rpoetess.filler]
+launched /players/rpoetess.filler
+$$$ exec p1 : [/players/rpoetess.filler]
 launched players/superjeannot.filler
 $$$ exec p2 : [players/superjeannot.filler]
 Plateau 24 40:
@@ -33,5 +33,6 @@ Plateau 24 40:
 021 ........................................
 022 ........................................
 023 ........................................
-Piece 1 5:
+Piece 2 5:
+**...
 **...

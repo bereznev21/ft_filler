@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 19:05:31 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/12 18:05:56 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:52:16 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int		**ft_crt_int_map(t_map *tmp, int **int_map)
 	index = 0;
 	//printf("%d %d\n", tmp->height, tmp->width);
 	if (!(int_map = (int**)malloc(sizeof(int*) * (tmp->height))))
-		//return ;
-		exit(0);
+		return (0);
+		//exit(0);
 	while (index < tmp->height)
 		if (!(int_map[index++] = (int*)malloc(sizeof(int) * (tmp->width))))
-		//	return ;
-			exit(0);
+			return (0);
+			//exit(0);
 	return (int_map);
 }
 
@@ -42,9 +42,9 @@ int		**ft_write_int_map(t_map *tmp, int **int_map)
 		{
 			if (tmp->map[i][j] == '.')
 				int_map[i][j] = 0;
-			if (tmp->map[i][j] == 'O')
+			if (tmp->map[i][j] == 'O' || tmp->map[i][j] == 'o')
 				int_map[i][j] = -1;
-			if (tmp->map[i][j] == 'X')
+			if (tmp->map[i][j] == 'X' || tmp->map[i][j] == 'x')
 				int_map[i][j] = -2;
 			//printf("% 2d", int_map[i][j]);
 			j++;
