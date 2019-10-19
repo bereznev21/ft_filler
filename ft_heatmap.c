@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 19:05:31 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 18:57:40 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 22:38:40 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		**ft_write_heat_map(t_map *tmp, int **int_map)
 	{
 		while (j < tmp->width)
 		{
-			if (int_map[i][j] == -2)
+			if (int_map[i][j] == -1)
 				ft_start_heat_map(tmp, int_map, i, j);
 			j++;
 		}
@@ -103,6 +103,6 @@ int		**ft_heatmap(int **int_map, t_map *tmp)
 	int_map = ft_crt_int_map(tmp, int_map);
 	int_map = ft_write_int_map(tmp, int_map);
 	int_map = ft_write_heat_map(tmp, int_map);
-	//int_map = ft_write_map3(tmp, int_map);
+	int_map = ft_write_map3(tmp, int_map);
 	return (int_map);
 }

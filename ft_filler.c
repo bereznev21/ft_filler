@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 19:01:59 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:43:29 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	ft_init_struct(t_map *tmp, t_figure *fig)
 	tmp->height = 0;
 	tmp->width = 0;
 	//tmp->map = NULL;
+	fig->figure = NULL;
 	fig->best_i = 0;
 	fig->best_j = 0;
 	//fig->best_sum = 1000;
@@ -146,8 +147,6 @@ int		main(void)
 				return (0);
 			if (ft_strstr(line, "Plateau "))
 			{
-				//ft_putstr(line);
-				//ft_putchar('\n');
 				ft_srch_size(line, tmp);
 				ft_write_map(tmp, line);
 			}
@@ -158,21 +157,19 @@ int		main(void)
 				//return (1);
 				break ;
 			}
-			//else
-			//	free(line);
+			else
+				free(line);
 		}
 		int_map = ft_heatmap(int_map, tmp);
 		ft_insert_figure(tmp, fig, int_map);
-		//ft_write_figure(tmp, fig);
+		ft_write_figure(tmp, fig);
 		//ft_print_map(tmp);
-		
 		{
 			ft_putnbr(fig->best_i);
 			ft_putchar(' ');
 			ft_putnbr(fig->best_j);
 			ft_putchar('\n');
 		}
-		
 		/*
 		{
 			ft_putnbr(fig->figure_a);

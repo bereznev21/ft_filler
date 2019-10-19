@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:51:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 17:45:49 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:39:31 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_srch_figure_size(t_figure *fig, char *line)
 		a = ft_strjoin_char(a, line[j]);
 		j++;
 	}
+	j++;
 	while (line[j] != ':')
 	{
 		b = ft_strjoin_char(b, line[j]);
