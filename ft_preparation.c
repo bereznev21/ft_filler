@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:05:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 23:01:58 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:20:39 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_srch_size(char *line, t_map *tmp)
 	tmp->height = ft_atoi(a);
 	tmp->width = ft_atoi(b);
 	//printf("%s\n", &line[8]);
-	//printf("|%d %d|", tmp->height, tmp->width);
+	ft_create_map(tmp);
 	free(a);
 	free(b);
 	free(line);

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 22:47:05 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:26:00 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 	fig->best_sum = 1000;
 	fig->best_i = 0;
 	fig->best_j = 0;
+	//printf("%d %d\n", fig->figure_a, fig->figure_b);
+	//printf("%d %d\n", tmp->height, tmp->width);
 	while (i < tmp->height - fig->figure_a)
 	{
 		while (j < tmp->width - fig->figure_b)

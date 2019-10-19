@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:51:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 23:00:41 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:45:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,38 @@ void	ft_srch_figure_size(t_figure *fig, char *line)
 	j = 6;
 	a = ft_strdup("");
 	b = ft_strdup("");
+	fig->figure_a = 0;
+	fig->figure_b = 0;
 	while (line[j] != ' ')
-		a = ft_strjoin_char(a, line[j++]);
-	j++;
+	{
+		a = ft_strjoin_char(a, line[j]);
+		j++;
+	}
 	while (line[j] != ':')
-		b = ft_strjoin_char(b, line[j++]);
-	fig->figure_a = atoi(a);
-	fig->figure_b = atoi(b);
+	{
+		b = ft_strjoin_char(b, line[j]);
+		j++;
+	}
+	fig->figure_a = ft_atoi(a);
+	fig->figure_b = ft_atoi(b);
 	ft_crt_figure(fig);
 	free(a);
 	free(b);
 	free(line);
 }
 
-void	ft_srch_figure(t_map *tmp, t_figure *fig, char *line)
+void	ft_srch_figure(t_figure *fig, char *line)
 {
 	int	i;
-	int index;
-	int a;
 
-	i = 1;
-	index = 0;
-	//while (i == 1)
+	i = 0;
+	//printf("%d\n", fig->figure_a);
+	while (i < fig->figure_a)
 	{
-		i = ft_get_next_line(0, &line);
-		if (ft_strstr(line, "Piece "))
-		{
-			ft_srch_figure_size(fig, line);
-			a = fig->figure_a;
-		}
-		i = ft_get_next_line(0, &line);
-		//printf("%d\n", a);
-		//if (ft_strstr(line, ".") || ft_strstr(line, "*"))
-		{
-			while (a > 0)
-			{
-				fig->figure[index] = ft_strjoin_right(fig->figure[index], line);
-				//printf("|%s|\n", fig->figure[index]);
-				index++;
-				free(line);
-				i = ft_get_next_line(0, &line);
-				a--;
-			}
-		}
-		(i == 1) ? free(line) : 0;
+		ft_get_next_line(0, &line);
+		fig->figure[i] = ft_strjoin_right(fig->figure[i], line);
+		//printf("%s\n", fig->figure[i]);
+		i++;
+		free(line);
 	}
 }

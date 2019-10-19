@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/13 22:25:55 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:46:45 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct		s_figure
 
 #endif
 
-void	ft_srch_figure(t_map *tmp, t_figure *fig, char *line);
+void	ft_srch_figure(t_figure *fig, char *line);
+void	ft_srch_figure_size(t_figure *fig, char *line);
 void	ft_write_map(t_map *tmp, char *line);
 void	ft_free_map(t_map *tmp);
 void	ft_create_map(t_map *tmp);

@@ -1,4 +1,5 @@
-NAME = libftfiller.a
+NAME = rpoetess.filler
+LIBFT = $(addprefix libft/, libft.a)
 
 SRC = ft_filler.c \
 	ft_srch_figure.c \
@@ -8,18 +9,20 @@ SRC = ft_filler.c \
 	ft_algo_heat_map.c \
 	ft_insert_figure.c \
 
-FLS = -Wall -Werror -Wextra
+FLS = -Wall -Werror -Wextra -g
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+%.o:%.c
+		gcc $(FLS) -c $< -o $@
 
-$(NAME):
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
 	make -C libft
-	gcc -c $(SRC) -I libft
-	@cp libft/libft.a ./$(NAME)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+
+$(NAME): $(OBJ)
+	gcc $(FLS) $(OBJ) -o $(NAME) -L libft -lft
 
 clean:
 	make clean -C libft
