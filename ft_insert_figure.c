@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 18:26:00 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:47:23 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ int		ft_putfigure(int **int_map, t_figure *fig, int i, int j)
 		b = 0;
 		a++;
 	}
+	/*
+	ft_putnbr(fig->best_i);
+	ft_putchar(' ');
+	ft_putnbr(fig->best_j);
+	ft_putchar('\n');
+	*/
 	//printf("sum %d %d : %d %d\n", sum , once, i, j);
 	if (once != 1)
 		return (-1);

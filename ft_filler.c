@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 18:32:57 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 19:01:59 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,25 @@ void	ft_read_header(char *line, int num, char order)
 			ft_get_next_line(0, &line);
 		i = 0;
 	}
-	if (ft_strstr(line, "p1 : [players/rpoetess.filler]"))
+	if (ft_strstr(line, "players"))
 	{
-		order = 'O';
-		num = -1;
-		free(line);
-	}
-	else if (ft_strstr(line, "launched"))
-	{
-		order = 'X';
-		num = -2;
-		free(line);
-	}
-	while (i++ < 3)
-	{
-		ft_get_next_line(0, &line);
-		free(line);
+		if (ft_strstr(line, "p1 : [players/rpoetess.filler]"))
+		{
+			order = 'O';
+			num = -1;
+			free(line);
+		}
+		else if (ft_strstr(line, "launched"))
+		{
+			order = 'X';
+			num = -2;
+			free(line);
+		}
+		while (i++ < 3)
+		{
+			ft_get_next_line(0, &line);
+			free(line);
+		}
 	}
 }
 
@@ -125,7 +128,7 @@ int		main(void)
 	t_figure	*fig;
 	int			**int_map;
 
-	num = 0;
+	num = 1;
 	order = 'X';
 	line = NULL;
 	ft_read_header(line, num, order);
@@ -158,7 +161,6 @@ int		main(void)
 			//else
 			//	free(line);
 		}
-
 		int_map = ft_heatmap(int_map, tmp);
 		ft_insert_figure(tmp, fig, int_map);
 		//ft_write_figure(tmp, fig);
@@ -170,6 +172,15 @@ int		main(void)
 			ft_putnbr(fig->best_j);
 			ft_putchar('\n');
 		}
+		
+		/*
+		{
+			ft_putnbr(fig->figure_a);
+			ft_putchar(' ');
+			ft_putnbr(fig->figure_b);
+			ft_putchar('\n');
+		}
+		*/
 		//ft_putstr("11 14\n");
 		//ft_strdel(tmp->map);
 		free(tmp);

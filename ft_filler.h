@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 17:46:45 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:42:52 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct		s_map
 
 typedef struct		s_figure
 {
-	int		figure_a;
-	int		figure_b;
 	int		best_i;
 	int		best_j;
+	int		figure_a;
+	int		figure_b;
 	int		best_sum;
 	char	**figure;
 }					t_figure;
