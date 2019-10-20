@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 21:44:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 22:03:19 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int		ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
 	{
 		while (b < fig->figure_b)
 		{
-			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->my_order)
+			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->his_order)
 				return (-1);
 			if (int_map[i + a][j + b] > 0 && fig->figure[a][b] == '*')
 				sum += int_map[i + a][j + b];
-			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->his_order)
+			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->my_order)
 				once++;
 			b++;
 		}
@@ -83,17 +83,12 @@ void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 	fig->best_sum = 1000;
 	fig->best_i = 0;
 	fig->best_j = 0;
-	//printf("%d %d\n", fig->figure_a, fig->figure_b);
-	//printf("%d %d\n", tmp->height, tmp->width);
 	while (i <= tmp->height - fig->figure_a)
 	{
 		while (j <= tmp->width - fig->figure_b)
 		{
-			//if (int_map[i][j] == -2)
 			{
-				//printf("%d %d\n", i, j);
 				sum = ft_putfigure(tmp, int_map, fig, i, j);
-				//printf("%d\n", sum);
 				if (fig->best_sum > sum && sum > 0)
 				{
 					fig->best_sum = sum;
