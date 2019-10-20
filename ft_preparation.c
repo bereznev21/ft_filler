@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:05:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 18:20:39 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:09:14 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	ft_srch_order(char *line, t_map *tmp)
 {
 	if (ft_strstr(line, "launched /players/rpoetess.filler"))
 	{
-		tmp->order_char = 'X';
-		tmp->order = 1;
+		tmp->my_order_char = 'X';
+		tmp->my_order = 1;
 	}
 	else
 	{
-		tmp->order_char = 'O';
-		tmp->order = 2;
+		tmp->my_order_char = 'O';
+		tmp->my_order = 2;
 	}
 	//free(line);
 	//printf("%d\n", tmp->order);

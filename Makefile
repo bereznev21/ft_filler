@@ -9,7 +9,7 @@ SRC = ft_filler.c \
 	ft_algo_heat_map.c \
 	ft_insert_figure.c \
 
-FLS = -Wall -Werror -Wextra -g
+FLS = -Wall -Wextra -g
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 18:42:52 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 15:09:47 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ typedef struct		s_map
 {
 	int		height;
 	int		width;
-	int		order;
-	char	order_char;
+	int		my_order;
+	int		you_order;
+	char	my_order_char;
+	char	you_order_char;
 	char	**map;
 }					t_map;
 
@@ -40,7 +42,7 @@ typedef struct		s_figure
 void	ft_srch_figure(t_figure *fig, char *line);
 void	ft_srch_figure_size(t_figure *fig, char *line);
 void	ft_write_map(t_map *tmp, char *line);
-void	ft_free_map(t_map *tmp);
+void	ft_free_map(int **tmp, int width);
 void	ft_create_map(t_map *tmp);
 int		ft_srch_map(t_map *tmp);
 void	ft_srch_order(char *line, t_map *tmp);

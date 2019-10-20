@@ -6,46 +6,11 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 20:43:29 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 16:59:31 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
-
-int		ft_check_space(int x, int y)
-{
-	if (x == 3 && y == 4)
-	{
-		printf("X");
-		return (1);
-	}
-	return (0);
-}
-
-void	ft_write_map2(int height, int width)
-{
-	int a;
-	int b;
-
-	a = 0;
-	b = 0;
-	while (b < width)
-		printf("%d", b++ % 10);
-	printf("\n");
-	b = 0;
-	while (a < height)
-	{
-		printf("%03d ", a);
-		while (b < width)
-		{
-			ft_check_space(a, b) ? 0 : printf(".");
-			b++;
-		}
-		printf("\n");
-		b = 0;
-		a++;
-	}
-}
 
 void	ft_print_map(t_map *tmp)
 {
@@ -79,12 +44,6 @@ void	ft_read_header(char *line, int num, char order)
 
 	i = 0;
 	ft_get_next_line(0, &line);
-	if (ft_strstr(line, "VM  version 1.1"))
-	{
-		while (i++ < 5)
-			ft_get_next_line(0, &line);
-		i = 0;
-	}
 	if (ft_strstr(line, "players"))
 	{
 		if (ft_strstr(line, "p1 : [players/rpoetess.filler]"))
@@ -99,12 +58,15 @@ void	ft_read_header(char *line, int num, char order)
 			num = -2;
 			free(line);
 		}
+		else
+			free(line);
 		while (i++ < 3)
 		{
 			ft_get_next_line(0, &line);
 			free(line);
 		}
 	}
+	//free (line);
 }
 
 void	ft_init_struct(t_map *tmp, t_figure *fig)
@@ -118,6 +80,57 @@ void	ft_init_struct(t_map *tmp, t_figure *fig)
 	fig->best_j = 0;
 	//fig->best_sum = 1000;
 	fig = 0;
+}
+
+int		ft_go(t_map *tmp, t_figure *fig, char *line)
+{
+	while (1)
+	{
+		if (ft_get_next_line(0, &line) == 0)
+			return (0);
+		if (ft_strstr(line, "Plateau "))
+		{
+			ft_srch_size(line, tmp);
+			ft_write_map(tmp, line);
+		}
+		else if (ft_strstr(line, "Piece "))
+		{
+			ft_srch_figure_size(fig, line);
+			ft_srch_figure(fig, line);
+			return (1);
+		}
+		else
+			free(line);
+	}
+	return (1);
+}
+
+void	ft_free_char(char **map, int width)
+{
+	int	i;
+
+	i = 0;
+	while (i < width)
+		free(map[i++]);
+	free(map);
+}
+
+void	ft_free_int(int **map, int width)
+{
+	int	i;
+
+	i = 0;
+	while (i < width)
+		free(map[i++]);
+	free(map);
+}
+
+void	ft_free(t_map *tmp, t_figure *fig)
+{
+	ft_free_char(tmp->map, tmp->height);
+	ft_free_char(fig->figure, fig->figure_a);
+	free(fig);
+	free(tmp);
 }
 
 int		main(void)
@@ -138,27 +151,14 @@ int		main(void)
 		tmp = (t_map*)malloc(sizeof(t_map));
 		fig = (t_figure*)malloc(sizeof(t_figure));
 		int_map = 0;
-		tmp->order = num;
-		tmp->order_char = order;
+		tmp->my_order = num;
+		tmp->my_order_char = order;
 		ft_init_struct(tmp, fig);
-		while (1)
+		if (ft_go(tmp, fig, line) == 0)
 		{
-			if (ft_get_next_line(0, &line) == 0)
-				return (0);
-			if (ft_strstr(line, "Plateau "))
-			{
-				ft_srch_size(line, tmp);
-				ft_write_map(tmp, line);
-			}
-			else if (ft_strstr(line, "Piece "))
-			{
-				ft_srch_figure_size(fig, line);
-				ft_srch_figure(fig, line);
-				//return (1);
-				break ;
-			}
-			else
-				free(line);
+			free(tmp);
+			free(fig);
+			return (0);
 		}
 		int_map = ft_heatmap(int_map, tmp);
 		ft_insert_figure(tmp, fig, int_map);
@@ -170,21 +170,8 @@ int		main(void)
 			ft_putnbr(fig->best_j);
 			ft_putchar('\n');
 		}
-		/*
-		{
-			ft_putnbr(fig->figure_a);
-			ft_putchar(' ');
-			ft_putnbr(fig->figure_b);
-			ft_putchar('\n');
-		}
-		*/
-		//ft_putstr("11 14\n");
-		//ft_strdel(tmp->map);
-		free(tmp);
-		ft_strdel(fig->figure);
-		free(fig);
-		free(int_map);
-		
+		ft_free_int(int_map, tmp->height);
+		ft_free(tmp, fig);
 	}
 	//free(line);
 	return (0);

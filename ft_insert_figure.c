@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/19 20:47:03 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:09:47 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_write_figure(t_map *tmp, t_figure *fig)
 		while (b < fig->figure_b)
 		{
 			if (fig->figure[a][b] == '*')
-				tmp->map[fig->best_i + a][fig->best_j + b] = tmp->order_char;
+				tmp->map[fig->best_i + a][fig->best_j + b] = tmp->my_order_char;
 			b++;
 		}
 		b = 0;
