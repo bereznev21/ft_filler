@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 13:09:47 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:44:44 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_write_figure(t_map *tmp, t_figure *fig)
 		while (b < fig->figure_b)
 		{
 			if (fig->figure[a][b] == '*')
-				tmp->map[fig->best_i + a][fig->best_j + b] = tmp->my_order_char;
+				tmp->map[fig->best_i + a][fig->best_j + b] = 'X';
 			b++;
 		}
 		b = 0;
@@ -32,7 +32,7 @@ void	ft_write_figure(t_map *tmp, t_figure *fig)
 	}
 }
 
-int		ft_putfigure(int **int_map, t_figure *fig, int i, int j)
+int		ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
 {
 	int	a;
 	int	b;
@@ -43,15 +43,16 @@ int		ft_putfigure(int **int_map, t_figure *fig, int i, int j)
 	b = 0;
 	sum = 0;
 	once = 0;
+	//printf("%d %d\n", tmp->my_order, tmp->his_order);
 	while (a < fig->figure_a)
 	{
 		while (b < fig->figure_b)
 		{
-			if (int_map[i + a][j + b] == -1 && fig->figure[a][b] == '*')
+			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->my_order)
 				return (-1);
 			if (int_map[i + a][j + b] > 0 && fig->figure[a][b] == '*')
 				sum += int_map[i + a][j + b];
-			if (int_map[i + a][j + b] == -2 && fig->figure[a][b] == '*')
+			if (fig->figure[a][b] == '*' && int_map[i + a][j + b] == tmp->his_order)
 				once++;
 			b++;
 		}
@@ -91,7 +92,7 @@ void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 			//if (int_map[i][j] == -2)
 			{
 				//printf("%d %d\n", i, j);
-				sum = ft_putfigure(int_map, fig, i, j);
+				sum = ft_putfigure(tmp, int_map, fig, i, j);
 				//printf("%d\n", sum);
 				if (fig->best_sum > sum && sum > 0)
 				{

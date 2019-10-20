@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 20:33:46 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 13:39:45 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:36:38 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		**ft_go_west(t_map *tmp, int **int_map, int i, int j)
 	int	n;
 
 	k = 1;
-	while (j >= 0 && int_map[i][j] != -1)
+	while (j >= 0 && int_map[i][j] != tmp->his_order)
 	{
 		if (int_map[i][j] == 0 || (int_map[i][j] != 0 && int_map[i][j] > k))
 			int_map[i][j] = k;
@@ -58,7 +58,7 @@ int		**ft_go_east(t_map *tmp, int **int_map, int i, int j)
 	int	n;
 
 	k = 1;
-	while (j < tmp->width && int_map[i][j] != -1)
+	while (j < tmp->width && int_map[i][j] != tmp->his_order)
 	{
 		if (int_map[i][j] == 0 || (int_map[i][j] != 0 && int_map[i][j] > k))
 			int_map[i][j] = k;
@@ -97,7 +97,7 @@ int		**ft_go_north(t_map *tmp, int **int_map, int i, int j)
 	int	n;
 
 	k = 1;
-	while (i >= 0 && int_map[i][j] != -1)
+	while (i >= 0 && int_map[i][j] != tmp->his_order)
 	{
 		if (int_map[i][j] == 0 || (int_map[i][j] != 0 && int_map[i][j] > k))
 			int_map[i][j] = k;
@@ -138,7 +138,7 @@ int		**ft_go_south(t_map *tmp, int **int_map, int i, int j)
 	int	n;
 
 	k = 1;
-	while (i < tmp->height && int_map[i][j] != -1)
+	while (i < tmp->height && int_map[i][j] != tmp->his_order)
 	{
 		if (int_map[i][j] == 0 || (int_map[i][j] != 0 && int_map[i][j] > k))
 			int_map[i][j] = k;
