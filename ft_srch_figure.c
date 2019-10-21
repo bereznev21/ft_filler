@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:51:14 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 18:31:05 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:56:58 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	ft_crt_figure(t_figure *fig)
 	index = 0;
 	fig->figure = (char**)malloc(sizeof(char*) * (fig->figure_a));
 	while (index < fig->figure_a)
-		fig->figure[index++] = (char*)malloc(sizeof(char) * (fig->figure_b));
+	{
+		fig->figure[index] = (char*)malloc(sizeof(char) * (fig->figure_b));
+		index++;
+	}
 }
 
 void	ft_srch_figure_size(t_figure *fig, char *line)
@@ -54,8 +57,7 @@ void	ft_srch_figure(t_figure *fig, char *line)
 	while (i < fig->figure_a)
 	{
 		ft_get_next_line(0, &line);
-		fig->figure[i] = ft_strdup("");
-		fig->figure[i] = ft_strjoin_right(fig->figure[i], line);
+		ft_strncpy(fig->figure[i], line, fig->figure_b);
 		i++;
 		free(line);
 	}

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 20:00:39 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:49:44 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int		ft_read_header(int num)
 			num = -1;
 		else
 			num = -2;
-		free(line);
 	}
+	free(line);
 	return (num);
 }
 
 void	ft_init_struct(t_map *tmp, t_figure *fig)
 {
+	tmp->once = 0;
 	tmp->height = 0;
 	tmp->width = 0;
 	fig->figure = NULL;
@@ -41,6 +42,7 @@ void	ft_init_struct(t_map *tmp, t_figure *fig)
 int		ft_go(t_map *tmp, t_figure *fig)
 {
 	char	*line;
+
 	while (1)
 	{
 		if (ft_get_next_line(0, &line) == 0)

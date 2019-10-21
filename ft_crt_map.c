@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:50:56 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 18:32:18 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:23:12 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void	ft_create_map(t_map *tmp)
 	if (!(tmp->map = (char**)malloc(sizeof(char*) * (tmp->height))))
 		return ;
 	while (index < tmp->height)
-		if (!(tmp->map[index++] = (char*)malloc(sizeof(char) * (tmp->width))))
+	{
+		if (!(tmp->map[index] = (char*)malloc(sizeof(char) * (tmp->width))))
 			return ;
+		index++;
+	}
 }
 
 void	ft_free_map(int **tmp, int width)

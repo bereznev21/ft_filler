@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 18:57:27 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:07:59 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,64 +32,69 @@ void		ft_write_figure(t_map *tmp, t_figure *fig)
 	}
 }
 
-uintmax_t	ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
+int			ft_putfigure1(t_map *tmp,
+					int **int_map, t_figure *fig, uintmax_t *sum)
 {
-	int			a;
-	int			b;
-	uintmax_t	sum;
-	int			once;
+	int	a;
+	int	b;
 
 	a = 0;
 	b = 0;
-	sum = 0;
-	once = 0;
+	tmp->once = 0;
 	while (a < fig->figure_a)
 	{
 		while (b < fig->figure_b)
 		{
 			if (fig->figure[a][b] == '*'
-			&& int_map[i + a][j + b] == tmp->his_order)
+			&& int_map[tmp->tmp_i + a][tmp->tmp_j + b] == tmp->his_order)
 				return (-1);
-			if (int_map[i + a][j + b] > 0 && fig->figure[a][b] == '*')
-				sum += int_map[i + a][j + b];
+			if (int_map[tmp->tmp_i + a][tmp->tmp_j + b] > 0
+			&& fig->figure[a][b] == '*')
+				*sum += int_map[tmp->tmp_i + a][tmp->tmp_j + b];
 			if (fig->figure[a][b] == '*'
-			&& int_map[i + a][j + b] == tmp->my_order)
-				once++;
+			&& int_map[tmp->tmp_i + a][tmp->tmp_j + b] == tmp->my_order)
+				tmp->once++;
 			b++;
 		}
 		b = 0;
 		a++;
 	}
-	if (once != 1)
+	return (tmp->once);
+}
+
+uintmax_t	ft_putfigure(t_map *tmp, int **int_map, t_figure *fig)
+{
+	uintmax_t	sum;
+
+	sum = 0;
+	if (ft_putfigure1(tmp, int_map, fig, &sum) != 1)
 		return (-1);
 	return (sum);
 }
 
-void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
+void		ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 {
-	int			i;
-	int			j;
 	uintmax_t	sum;
 
-	i = 0;
-	j = 0;
+	tmp->tmp_i = 0;
+	tmp->tmp_j = 0;
 	sum = 0;
-	while (i <= tmp->height - fig->figure_a)
+	while (tmp->tmp_i <= tmp->height - fig->figure_a)
 	{
-		while (j <= tmp->width - fig->figure_b)
+		while (tmp->tmp_j <= tmp->width - fig->figure_b)
 		{
 			{
-				sum = ft_putfigure(tmp, int_map, fig, i, j);
+				sum = ft_putfigure(tmp, int_map, fig);
 				if ((fig->best_sum > sum || fig->best_sum == 0) && sum > 0)
 				{
 					fig->best_sum = sum;
-					fig->best_i = i;
-					fig->best_j = j;
+					fig->best_i = tmp->tmp_i;
+					fig->best_j = tmp->tmp_j;
 				}
 			}
-			j++;
+			tmp->tmp_j++;
 		}
-		j = 0;
-		i++;
+		tmp->tmp_j = 0;
+		tmp->tmp_i++;
 	}
 }

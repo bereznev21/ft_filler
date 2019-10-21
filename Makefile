@@ -6,7 +6,7 @@ SRC = ft_filler.c \
 	ft_crt_map.c \
 	ft_preparation.c \
 	ft_heatmap.c \
-	ft_algo_heat_map.c \
+	ft_go_south.c \
 	ft_go_north.c \
 	ft_go_west.c \
 	ft_go_east.c \
