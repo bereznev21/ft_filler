@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 19:05:31 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 22:25:42 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 17:59:11 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,14 @@ int		**ft_write_heat_map(t_map *tmp, int **int_map)
 {
 	int	i;
 	int	j;
-	int	k;
 
 	i = 0;
 	j = 0;
-	k = tmp->his_order;
 	while (i < tmp->height)
 	{
 		while (j < tmp->width)
 		{
-			if (int_map[i][j] == k)
+			if (int_map[i][j] == tmp->his_order)
 				ft_start_heat_map(tmp, int_map, i, j);
 			j++;
 		}

@@ -6,13 +6,13 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:22:35 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 22:03:19 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:04:38 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-void	ft_write_figure(t_map *tmp, t_figure *fig)
+void		ft_write_figure(t_map *tmp, t_figure *fig)
 {
 	int	a;
 	int	b;
@@ -32,12 +32,12 @@ void	ft_write_figure(t_map *tmp, t_figure *fig)
 	}
 }
 
-int		ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
+uintmax_t	ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
 {
-	int	a;
-	int	b;
-	int	sum;
-	int	once;
+	int			a;
+	int			b;
+	uintmax_t	sum;
+	int			once;
 
 	a = 0;
 	b = 0;
@@ -73,14 +73,14 @@ int		ft_putfigure(t_map *tmp, int **int_map, t_figure *fig, int i, int j)
 
 void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 {
-	int	i;
-	int	j;
-	int	sum;
+	int			i;
+	int			j;
+	uintmax_t	sum;
 
 	i = 0;
 	j = 0;
 	sum = 0;
-	fig->best_sum = 1000;
+	fig->best_sum = 0;
 	fig->best_i = 0;
 	fig->best_j = 0;
 	while (i <= tmp->height - fig->figure_a)
@@ -89,7 +89,7 @@ void	ft_insert_figure(t_map *tmp, t_figure *fig, int **int_map)
 		{
 			{
 				sum = ft_putfigure(tmp, int_map, fig, i, j);
-				if (fig->best_sum > sum && sum > 0)
+				if ((fig->best_sum > sum || fig->best_sum == 0) && sum > 0)
 				{
 					fig->best_sum = sum;
 					fig->best_i = i;
