@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 16:37:41 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:06:29 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct		s_map
 	int			his_order;
 	int			height;
 	int			width;
+	int			tmp_i;
+	int			tmp_j;
 	char		**map;
 }					t_map;
 

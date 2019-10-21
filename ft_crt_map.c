@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:50:56 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/20 15:18:31 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:32:18 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	ft_write_map(t_map *tmp, char *line)
 	{
 		ft_get_next_line(0, &line);
 		tmp->map[j] = ft_strjoin_right(tmp->map[j], &line[4]);
-		//printf("%03d %s\n", j, tmp->map[j]);
 		free(line);
 		j++;
 	}
-	//printf("%s", tmp->map[j]);
 }
